@@ -1,0 +1,158 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Amiri', serif;
+  font-size: 32px;
+}
+
+header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#628D29), to(#264620));
+  background: linear-gradient(to bottom, #628D29, #264620);
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.container {
+  margin-top: 75px;
+}
+
+.rows-surah {
+  background-color: #FDEEC3;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.rows-surah span {
+  position: absolute;
+  right: 5px;
+}
+
+.rows-ayat {
+  background-color: #FDEEC3;
+  width: 100%;
+  border-bottom: 1px solid black;
+  line-height: 100px;
+  text-align: right;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 10fr;
+      grid-template-columns: 1fr 10fr;
+}
+
+.rows-ayat span.ayat {
+  background-color: #EBDAAF;
+  border-right: 1px solid black;
+  height: 100%;
+  text-align: center;
+  display: table-cell;
+  vertical-align: center;
+}
+
+.container-loader {
+  width: 50px;
+  height: 50px;
+  border: 4px solid black;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  padding: 10px;
+  -webkit-animation: loader 1s linear infinite;
+          animation: loader 1s linear infinite;
+}
+
+.container-loader .loader {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 7px;
+  left: 7px;
+  border: 4px solid black;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.preloader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+body::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #FDEEC3;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, left bottom, from(#628D29), to(#2A4A21));
+  background: linear-gradient(to bottom, #628D29, #2A4A21);
+  border-radius: 10px;
+  height: 30px;
+  -webkit-box-shadow: 0 -100vh 0 100vh #2A4A21;
+          box-shadow: 0 -100vh 0 100vh #2A4A21;
+}
+
+body::-webkit-scrollbar-button {
+  background-color: #628D29;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+.fade-enter {
+  opacity: 0;
+  background-color: blue;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+/*# sourceMappingURL=App.css.map */
