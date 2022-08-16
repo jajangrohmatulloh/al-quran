@@ -13,8 +13,8 @@ const App = () => {
           classNames="fade"
           timeout={1000}>
           <Switch>
-            <Route path="/" exact component={Surah} />
-            <Route path="/:number" component={Ayat} />
+            <Route path="/al-quran" exact component={Surah} />
+            <Route path="/al-quran/:number" component={Ayat} />
           </Switch>
         </CSSTransition>
       </TransitionGroup>
