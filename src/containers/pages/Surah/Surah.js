@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListSurah from '../../../components/atoms/LIstSurah/ListSurah';
+import ListSurah from '../../../components/atoms/ListSurah/ListSurah';
 import Loader from '../../../components/atoms/Loader/Loader';
 
 class Surah extends Component {
