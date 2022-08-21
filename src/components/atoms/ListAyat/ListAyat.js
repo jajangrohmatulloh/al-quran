@@ -1,6 +1,10 @@
 import React from 'react';
+import { useRef } from 'react';
 
 const ListAyat = (props) => {
+    const button = useRef();
+    const audio = useRef();
+
     function toFarsiNumber(n) {
         const farsiDigits = ['۰', '۱', '۲', '۳', '٤', '۵', '٦', '۷', '۸', '۹'];
     
@@ -8,6 +12,25 @@ const ListAyat = (props) => {
             .toString()
             .replace(/\d/g, x => farsiDigits[x]); 
     }
+
+    function handlePlay() {
+        if (button.current.className === 'play') {
+        button.current.className = 'play pause';
+        audio.current.play()
+        } else { 
+        button.current.className = 'play';
+        audio.current.pause()
+        }
+        console.log(button)
+    }
+
+    const handleEnded = () => {
+        button.current.className = 'play';
+        audio.current.src = `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${++props.ayat.number}.mp3`
+        audio.current.play()
+    }
+
+
     return ( 
         <>
             {
@@ -19,7 +42,15 @@ const ListAyat = (props) => {
                 </div>
             }
         <div className="rows-ayat">
-            <span className="numberAyat">{toFarsiNumber(props.ayat.numberInSurah)}</span>
+            <div className="numberAyat">
+                <span>{toFarsiNumber(props.ayat.numberInSurah)}
+                </span>
+                </div>
+            <div className="container-audio">
+                <div className="circle"  onClick={handlePlay}>
+                    <div className="play" ref={button} data-number={props.ayat.number}></div>
+                </div>
+            </div>
             <span className="ayat">
                 {
                     props.ayat.number !== 1 &&
@@ -30,6 +61,12 @@ const ListAyat = (props) => {
                 }
                 </span>
         </div>
+        <audio
+        src={`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${props.ayat.number}.mp3`}
+        ref={audio}
+        onEnded={handleEnded}>
+
+        </audio>
         </>
     )
 }

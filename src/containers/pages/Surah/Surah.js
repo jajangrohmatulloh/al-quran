@@ -18,7 +18,7 @@ class Surah extends Component {
           })
     }
     handleClick = (id) => {
-        this.props.history.push(`/al-quran/${id}`)
+        this.props.history.push(`/${id}`)
     }
     render() {
         return (
