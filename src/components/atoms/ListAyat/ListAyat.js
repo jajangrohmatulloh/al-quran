@@ -47,7 +47,7 @@ const ListAyat = (props) => {
                 </span>
                 </div>
             <div className="container-audio">
-                <div className="circle"  onClick={handlePlay}>
+                <div className="circle"  onClick={ () => props.handlePlay(button)}>
                     <div className="play" ref={button} data-number={props.ayat.number}></div>
                 </div>
             </div>
@@ -61,12 +61,12 @@ const ListAyat = (props) => {
                 }
                 </span>
         </div>
-        <audio
+        {/* <audio
         src={`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${props.ayat.number}.mp3`}
         ref={audio}
         onEnded={handleEnded}>
 
-        </audio>
+        </audio> */}
         </>
     )
 }
