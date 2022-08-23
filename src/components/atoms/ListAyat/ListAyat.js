@@ -61,12 +61,6 @@ const ListAyat = (props) => {
                 }
                 </span>
         </div>
-        {/* <audio
-        src={`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${props.ayat.number}.mp3`}
-        ref={audio}
-        onEnded={handleEnded}>
-
-        </audio> */}
         </>
     )
 }

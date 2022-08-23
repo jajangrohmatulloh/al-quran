@@ -13,7 +13,8 @@ class Ayat extends Component {
         lists: [],
         ayat: [],
         load: true,
-        number: '1'
+        number: '',
+        prevNumber: '',
     }
     componentDidMount() {
         fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}`)
@@ -24,27 +25,79 @@ class Ayat extends Component {
                     ayat: res.data.ayahs,
                     load: false
                 })
-
             })
             
     }
     handlePlay = (buttonPlay) => {
-        // this.buttonPlay = buttonPlay;
-        // console.log(this.buttonPlay.current)
-        this.setState({number: buttonPlay.current.dataset.number}, () => {
-            this.audioRef.current.play();
+        this.setState(prevState => ({
+            number: buttonPlay.current.dataset.number,
+            button: buttonPlay
+        }), () => {
+            
+            const classPlay = Array.from(document.getElementsByClassName('play'))
+            if (buttonPlay.current.className === 'play') {
+                classPlay.forEach(i => {
+                    if (i.classList.contains('pause')) 
+                    i.classList.remove('pause')
+                })
+                buttonPlay.current.className = 'play pause';
+                this.audioRef.current.play();
+
+            } else {
+                buttonPlay.current.className = 'play'
+                this.audioRef.current.pause();
+            }
 
         })
-        // this.audioRef.current.src = `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${buttonPlay.current.dataset.number}.mp3`;
     }
+
     handleEnded = () => {
-
-        // this.buttonPlay = 
-        // this.audioRef.current.src = `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${parseInt(this.buttonPlay.current.dataset.number) + 1}.mp3`
+        const classPlay = Array.from(document.getElementsByClassName('play'))
+        console.log(this.state.number)
+        if(this.state.number == classPlay[classPlay.length - 1].dataset.number) {
+            classPlay.forEach( i => {
+                if (i.classList.contains('pause')) 
+                i.classList.remove('pause')})
+        this.audioRef.current.pause();
+        return; }
         this.setState({number: ++this.state.number }, () => {
+            console.log(classPlay[classPlay.length - 1].dataset.number)
+            console.log(this.state.number)
+                classPlay.forEach( i => {
+                    if (i.classList.contains('pause')) 
+                    i.classList.remove('pause')
+                    if (i.dataset.number == this.state.number) {
+                    i.classList.add('pause')
+                    window.scrollTo({ top: i.offsetTop - 210, behavior: 'smooth'});
+                    }
+                })
+            //    if(this.state.number == classPlay[classPlay.length - 1].dataset.number) {
+            //     console.log('dffdh')
+            //    }
             this.audioRef.current.play()
+            
         })
     }
+
+    // handlePaused = () => {
+    //     const classPlay = Array.from(document.getElementsByClassName('play'))
+            
+    //             classPlay.forEach(i => {
+    //                 console.log(i)
+    //                 if (i.classList.contains('pause')) 
+    //                 i.classList.remove('pause')
+    //             })
+    // }
+
+    // handlePlayed = () => {
+    //     const classPlay = Array.from(document.getElementsByClassName('play'))
+            
+    //             classPlay.forEach(i => {
+    //                 if (i.dataset.number == this.state.number)
+    //                 i.classList.add('pause')
+                    
+    //             })
+    // }
     render() {
         return (
             <>

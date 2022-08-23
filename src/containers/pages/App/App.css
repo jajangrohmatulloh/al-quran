@@ -94,7 +94,8 @@ header {
 }
 
 audio {
-  display: none;
+  position: fixed;
+  bottom: 0px;
 }
 
 .container-loader {
