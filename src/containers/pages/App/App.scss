@@ -18,6 +18,18 @@ header {
     position: fixed;
     top: 0;
     z-index: 1;
+    overflow-y: hidden;
+
+    .back-button {
+        position: absolute;
+        // float: left;
+        margin-left: 10px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 40%;
+        }
+    }
 }
 
 .container {
@@ -30,6 +42,14 @@ header {
     width: 100%;
     border-bottom: 1px solid black;
     cursor: pointer;
+
+    &:hover {
+        border-bottom: none;
+        background-color: #628D29;
+        color: white;
+        transition: all 100ms ease;
+        // scale: 0.9;
+    }
 
     span {
         position: absolute;
@@ -106,10 +126,10 @@ header {
     }
 }
 
-audio {
-    position: fixed;
-    bottom: 0px;
-}
+// audio {
+//     position: fixed;
+//     bottom: 0px;
+// }
 
 .container-loader {
     width: 50px;

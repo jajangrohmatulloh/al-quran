@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListAyat from '../../../components/atoms/ListAyat/ListAyat';
 import Loader from '../../../components/atoms/Loader/Loader';
+import pic from '../../../img/back-button.svg'
 
 class Ayat extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Ayat extends Component {
         lists: [],
         ayat: [],
         load: true,
-        number: '',
+        number: '1',
         prevNumber: '',
     }
     componentDidMount() {
@@ -101,7 +102,12 @@ class Ayat extends Component {
     render() {
         return (
             <>
-                <header>{this.state.lists.englishName}</header>
+                <header>
+                    <div className="back-button" onClick={() => this.props.history.goBack()}>
+                        <img src={pic} alt=""/>
+                    </div>
+                    {this.state.lists.englishName}
+                    </header>
                 <div className="container" ref={this.containerSurah}>
                     {this.state.load && <Loader />}
                     {

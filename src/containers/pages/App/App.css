@@ -18,6 +18,15 @@ header {
   position: fixed;
   top: 0;
   z-index: 1;
+  overflow-y: hidden;
+}
+header .back-button {
+  position: absolute;
+  margin-left: 10px;
+  cursor: pointer;
+}
+header .back-button:hover {
+  opacity: 40%;
 }
 
 .container {
@@ -30,6 +39,12 @@ header {
   width: 100%;
   border-bottom: 1px solid black;
   cursor: pointer;
+}
+.rows-surah:hover {
+  border-bottom: none;
+  background-color: #628D29;
+  color: white;
+  transition: all 100ms ease;
 }
 .rows-surah span {
   position: absolute;
@@ -91,11 +106,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-audio {
-  position: fixed;
-  bottom: 0px;
 }
 
 .container-loader {

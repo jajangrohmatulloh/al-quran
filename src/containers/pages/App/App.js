@@ -14,7 +14,7 @@ const App = () => {
           timeout={1000}>
           <Switch>
             <Route path="/" exact component={Surah} />
-            <Route path="/:number" component={Ayat} />
+            <Route path="/surah/:number" component={Ayat} />
           </Switch>
         </CSSTransition>
       </TransitionGroup>

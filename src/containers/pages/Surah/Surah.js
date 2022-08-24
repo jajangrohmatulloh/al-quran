@@ -18,7 +18,7 @@ class Surah extends Component {
           })
     }
     handleClick = (id) => {
-        this.props.history.push(`/${id}`)
+        this.props.history.push(`/surah/${id}`)
     }
     render() {
         return (
