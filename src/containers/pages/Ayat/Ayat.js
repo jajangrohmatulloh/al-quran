@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ListAyat from '../../../components/atoms/ListAyat/ListAyat';
 import Loader from '../../../components/atoms/Loader/Loader';
-import pic from '../../../img/back-button.svg'
+import backButton from '../../../assets/back-button.svg';
+import globe from '../../../assets/globe.svg';
+import chevronDown from '../../../assets/chevron-down.svg';
 
 class Ayat extends Component {
     constructor(props) {
@@ -15,17 +17,26 @@ class Ayat extends Component {
         ayat: [],
         load: true,
         number: '1',
-        prevNumber: '',
+        transliteration: []
     }
     componentDidMount() {
-        fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}`)
+        fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}/en.transliteration`)
             .then(res => res.json())
-            .then(res => {
+            .then(res => { 
                 this.setState({
-                    lists: res.data,
-                    ayat: res.data.ayahs,
-                    load: false
+                    transliteration: res.data.ayahs
                 })
+                fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        
+                        this.setState({
+                            lists: res.data,
+                            ayat: res.data.ayahs,
+                            load: false
+                        })
+                
+                    })
             })
             
     }
@@ -104,15 +115,31 @@ class Ayat extends Component {
             <>
                 <header>
                     <div className="back-button" onClick={() => this.props.history.goBack()}>
-                        <img src={pic} alt=""/>
+                        <img src={backButton} alt=""/>
                     </div>
-                    {this.state.lists.englishName}
+                    <div className="detail-surah">
+                        <div className="surah">
+                            {this.state.lists.englishName}&nbsp;<img src={chevronDown} alt=""/>
+                        </div>
+                        <div className="ayat">
+                            {this.state.lists.numberOfAyahs}&nbsp;Ayahs
+                        </div>
+                        <div className="juz">
+                            dsfd
+                        </div>
+                        <div className="revelation">
+                            asd
+                        </div>
+                    </div>
+                    <div className="globe" onClick={() => this.props.history.goBack()}>
+                        <img src={globe} alt=""/>
+                    </div>
                     </header>
                 <div className="container" ref={this.containerSurah}>
                     {this.state.load && <Loader />}
                     {
-                        this.state.ayat.map(list =>
-                            <ListAyat ayat={list} handlePlay={this.handlePlay}/>)
+                        this.state.ayat.map((list, i) =>
+                            <ListAyat ayat={list} transliteration={this.state.transliteration[i]} surah={this.props.match.params.number} handlePlay={this.handlePlay}/>)
                     }
                 </div>
                 <audio

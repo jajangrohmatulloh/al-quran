@@ -29,8 +29,8 @@ const ListAyat = (props) => {
         audio.current.src = `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${++props.ayat.number}.mp3`
         audio.current.play()
     }
-
-
+    console.log(props.surah)
+    
     return ( 
         <>
             {
@@ -43,7 +43,7 @@ const ListAyat = (props) => {
             }
         <div className="rows-ayat">
             <div className="numberAyat">
-                <span>{toFarsiNumber(props.ayat.numberInSurah)}
+                <span>{toFarsiNumber(props.surah)}:{toFarsiNumber(props.ayat.numberInSurah)}
                 </span>
                 </div>
             <div className="container-audio">
@@ -59,7 +59,11 @@ const ListAyat = (props) => {
                     props.ayat.text.substring(38) : 
                     props.ayat.text
                 }
-                </span>
+            </span>
+            <div className="transliteration">
+                
+                {props.transliteration.text}
+                </div>    
         </div>
         </>
     )
