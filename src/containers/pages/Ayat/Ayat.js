@@ -17,7 +17,8 @@ class Ayat extends Component {
         ayat: [],
         load: true,
         number: '1',
-        transliteration: []
+        transliteration: [],
+        translate: []
     }
     componentDidMount() {
         fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}/en.transliteration`)
@@ -37,7 +38,16 @@ class Ayat extends Component {
                         })
                 
                     })
+                    
             })
+            fetch(`http://api.alquran.cloud/v1/edition/type/translation`)
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    translate: res.data
+                }, () => console.log(this.state.translate[1]))
+            })
+            
             
     }
     handlePlay = (buttonPlay) => {
@@ -114,14 +124,14 @@ class Ayat extends Component {
         return (
             <>
                 <header>
-                    <div className="back-button" onClick={() => this.props.history.goBack()}>
+                    <div className="back-button" onClick={() => this.props.history.push('/')}>
                         <img src={backButton} alt=""/>
                     </div>
                     <div className="detail-surah">
                         <div className="surah">
                             {this.state.lists.englishName}&nbsp;<img src={chevronDown} alt=""/>
                         </div>
-                        <div className="ayat">
+                        {/* <div className="ayat">
                             {this.state.lists.numberOfAyahs}&nbsp;Ayahs
                         </div>
                         <div className="juz">
@@ -129,7 +139,7 @@ class Ayat extends Component {
                         </div>
                         <div className="revelation">
                             asd
-                        </div>
+                        </div> */}
                     </div>
                     <div className="globe" onClick={() => this.props.history.goBack()}>
                         <img src={globe} alt=""/>
@@ -142,6 +152,19 @@ class Ayat extends Component {
                             <ListAyat ayat={list} transliteration={this.state.transliteration[i]} surah={this.props.match.params.number} handlePlay={this.handlePlay}/>)
                     }
                 </div>
+                <div className="container-box-select">
+                    <div className="top-box-select">
+                    </div>
+                    <div class="box">
+                        {this.state.translate.map(e => 
+                            <div className="menu-item">
+                                {e.language}:{e.name}
+                            </div>
+
+                        )}
+                        </div>
+                </div>
+
                 <audio
                 src={`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${this.state.number}.mp3`}
                 ref={this.audioRef}
