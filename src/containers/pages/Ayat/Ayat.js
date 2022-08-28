@@ -45,7 +45,25 @@ class Ayat extends Component {
             .then(res => {
                 this.setState({
                     translate: res.data
-                }, () => console.log(this.state.translate[1]))
+                }, () => {
+                    let sortTrans = this.state.translate.sort((a, b) => {
+                        let x = a.language.toLowerCase();
+                        let y = b.language.toLowerCase();
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    })
+                    sortTrans.forEach(i => {
+                        switch (i.language) {
+                            case "en": i.language = 'English';
+                        }
+                        
+                        
+                    })
+                    console.log(sortTrans)
+                    }
+                // }
+                )
             })
             
             
@@ -158,7 +176,7 @@ class Ayat extends Component {
                     <div class="box">
                         {this.state.translate.map(e => 
                             <div className="menu-item">
-                                {e.language}:{e.name}
+                                <sup>{e.language}</sup>{e.name}
                             </div>
 
                         )}
