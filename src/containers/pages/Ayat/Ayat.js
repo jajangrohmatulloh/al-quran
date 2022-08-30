@@ -46,21 +46,33 @@ class Ayat extends Component {
                 this.setState({
                     translate: res.data
                 }, () => {
-                    let sortTrans = this.state.translate.sort((a, b) => {
+                    this.state.translate.forEach(i => {
+                        switch (i.language) {
+                            case "az": i.language = 'Azerbaijani'; break;
+                            case "ar": i.language = 'Arabic'; break;
+                            case "ba": i.language = 'Bashkir'; break;
+                            case "bg": i.language = 'Bulgarian'; break;
+                            case "bn": i.language = 'Bengali'; break;
+                            case "bs": i.language = 'Bosnian'; break;
+                            case "cs": i.language = 'Chinese'; break;
+                            case "dv": i.language = 'Divehi / Maldivian'; break;
+                            case "de": i.language = 'German'; break;
+                            case "en": i.language = 'English'; break;
+                            case "es": i.language = 'Spanish'; break;
+                            case "sq": i.language = 'Albanian / Shqiq'; break;
+                            case "fa": i.language = 'Farsi'; break;
+                            case "fr": i.language = 'Hamidullah'; break;
+                            case "ha": i.language = 'Hausa'; break;
+                        }
+                    })
+                    this.state.translate.sort((a, b) => {
                         let x = a.language.toLowerCase();
                         let y = b.language.toLowerCase();
                         if (x < y) {return -1;}
                         if (x > y) {return 1;}
                         return 0;
                     })
-                    sortTrans.forEach(i => {
-                        switch (i.language) {
-                            case "en": i.language = 'English';
-                        }
-                        
-                        
-                    })
-                    console.log(sortTrans)
+                    console.log(this.state.translate)
                     }
                 // }
                 )
