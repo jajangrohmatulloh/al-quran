@@ -54,7 +54,7 @@ class Ayat extends Component {
                             case "bg": i.language = 'Bulgarian'; break;
                             case "bn": i.language = 'Bengali'; break;
                             case "bs": i.language = 'Bosnian'; break;
-                            case "cs": i.language = 'Chinese'; break;
+                            case "cs": i.language = 'Czech'; break;
                             case "dv": i.language = 'Divehi / Maldivian'; break;
                             case "de": i.language = 'German'; break;
                             case "en": i.language = 'English'; break;
@@ -63,6 +63,35 @@ class Ayat extends Component {
                             case "fa": i.language = 'Farsi'; break;
                             case "fr": i.language = 'Hamidullah'; break;
                             case "ha": i.language = 'Hausa'; break;
+                            case "hi": i.language = 'Hindi'; break;
+                            case "id": i.language = 'Indonesia'; break;
+                            case "it": i.language = 'Italian'; break;
+                            case "ja": i.language = 'Japanese'; break;
+                            case "ko": i.language = 'Korean'; break;
+                            case "ku": i.language = 'Kurdish'; break;
+                            case "ml": i.language = 'Malayalam'; break;
+                            case "ms": i.language = 'Malay'; break;
+                            case "my": i.language = 'Myanmar'; break;
+                            case "nl": i.language = 'Dutch'; break;
+                            case "no": i.language = 'Norwegian'; break;
+                            case "pl": i.language = 'Polish'; break;
+                            case "pt": i.language = 'Portuguese'; break;
+                            case "ro": i.language = 'Romanian'; break;
+                            case "ru": i.language = 'Russian'; break;
+                            case "sd": i.language = 'Sindhi'; break;
+                            case "si": i.language = 'Sinhalese'; break;
+                            case "so": i.language = 'Somali'; break;
+                            case "sv": i.language = 'Swedish'; break;
+                            case "sw": i.language = 'Swahili / Kiswahili'; break;
+                            case "ta": i.language = 'Tamil'; break;
+                            case "tg": i.language = 'Tajik'; break;
+                            case "th": i.language = 'Thau'; break;
+                            case "tr": i.language = 'Turkish'; break;
+                            case "tt": i.language = 'Tatar'; break;
+                            case "ug": i.language = 'Uyghur'; break;
+                            case "ur": i.language = 'Urdu'; break;
+                            case "uz": i.language = 'Uzbekistan'; break;
+                            case "zh": i.language = 'Chinese'; break;
                         }
                     })
                     this.state.translate.sort((a, b) => {
@@ -72,7 +101,6 @@ class Ayat extends Component {
                         if (x > y) {return 1;}
                         return 0;
                     })
-                    console.log(this.state.translate)
                     }
                 // }
                 )
@@ -131,6 +159,11 @@ class Ayat extends Component {
         })
     }
 
+    handleTranslate = () => {
+        const selectBox = document.getElementsByClassName('container-box-select')[0];
+        selectBox.classList.toggle('appear')
+    }
+
     // handlePaused = () => {
     //     const classPlay = Array.from(document.getElementsByClassName('play'))
             
@@ -171,7 +204,7 @@ class Ayat extends Component {
                             asd
                         </div> */}
                     </div>
-                    <div className="globe" onClick={() => this.props.history.goBack()}>
+                    <div className="globe" onClick={this.handleTranslate}>
                         <img src={globe} alt=""/>
                     </div>
                     </header>
@@ -184,6 +217,7 @@ class Ayat extends Component {
                 </div>
                 <div className="container-box-select">
                     <div className="top-box-select">
+                        
                     </div>
                     <div class="box">
                         {this.state.translate.map(e => 
