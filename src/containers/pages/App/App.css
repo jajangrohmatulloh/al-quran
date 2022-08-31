@@ -9,6 +9,15 @@ body {
   background-color: #FDEEC3;
 }
 
+.fade {
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 header {
   background: linear-gradient(to bottom, #628D29, #264620);
   color: white;
@@ -89,6 +98,7 @@ header .globe {
 
 .container-box-select {
   position: fixed;
+  z-index: 3;
   bottom: -256px;
   width: 100%;
   height: 256px;
@@ -104,7 +114,26 @@ header .globe {
 .container-box-select .top-box-select {
   height: 40px;
   background-color: #EBDAAF;
-  opacity: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.container-box-select .top-box-select .cancel {
+  display: inline-block;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.container-box-select .top-box-select .cancel span {
+  display: block;
+  background-color: #000000;
+  width: 20px;
+  height: 1.2px;
+}
+.container-box-select .top-box-select .cancel span:first-child {
+  transform: rotate(45deg);
+}
+.container-box-select .top-box-select .cancel span:last-child {
+  transform: rotate(135deg);
 }
 .container-box-select .box {
   height: 100%;
@@ -113,7 +142,7 @@ header .globe {
 }
 .container-box-select .box .menu-item {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
 }
 .container-box-select .box .menu-item:hover {

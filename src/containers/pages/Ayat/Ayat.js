@@ -17,8 +17,9 @@ class Ayat extends Component {
         ayat: [],
         load: true,
         number: '1',
+        translate: [],
         transliteration: [],
-        translate: []
+        translation: [],
     }
     componentDidMount() {
         fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}/en.transliteration`)
@@ -159,9 +160,39 @@ class Ayat extends Component {
         })
     }
 
-    handleTranslate = () => {
+    handleGlobe = () => {
         const selectBox = document.getElementsByClassName('container-box-select')[0];
-        selectBox.classList.toggle('appear')
+        selectBox.classList.toggle('appear');
+        const fade = document.getElementsByClassName('fade')[0];
+        fade.removeAttribute('style');
+    }
+
+    handleFade = (event) => {
+        event.target.style.display = 'none';
+        const selectBox = document.getElementsByClassName('container-box-select')[0];
+        selectBox.classList.toggle('appear');
+    }
+
+    handleCancel = () => {
+        const selectBox = document.getElementsByClassName('container-box-select')[0];
+        selectBox.classList.toggle('appear');
+        const fade = document.getElementsByClassName('fade')[0];
+        fade.style.display = 'none'
+    }
+
+    handleTranslate = (event) => {
+        console.log(event.target.dataset.id)
+        fetch(`http://api.alquran.cloud/v1/surah/${this.props.match.params.number}/${event.target.dataset.id}`)
+            .then(res => res.json())
+            .then(res => { 
+                this.setState({
+                    translation: res.data.ayahs
+                }, () => console.log(this.state.translation))
+            })
+            const selectBox = document.getElementsByClassName('container-box-select')[0];
+            selectBox.classList.toggle('appear');
+            const fade = document.getElementsByClassName('fade')[0];
+            fade.style.display = 'none'
     }
 
     // handlePaused = () => {
@@ -204,7 +235,7 @@ class Ayat extends Component {
                             asd
                         </div> */}
                     </div>
-                    <div className="globe" onClick={this.handleTranslate}>
+                    <div className="globe" onClick={this.handleGlobe}>
                         <img src={globe} alt=""/>
                     </div>
                     </header>
@@ -212,21 +243,31 @@ class Ayat extends Component {
                     {this.state.load && <Loader />}
                     {
                         this.state.ayat.map((list, i) =>
-                            <ListAyat ayat={list} transliteration={this.state.transliteration[i]} surah={this.props.match.params.number} handlePlay={this.handlePlay}/>)
+                            <ListAyat ayat={list} 
+                            surah={this.props.match.params.number} 
+                            transliteration={this.state.transliteration[i]}
+                            translation={this.state.translation[i]} 
+                            handlePlay={this.handlePlay}/>)
                     }
                 </div>
                 <div className="container-box-select">
                     <div className="top-box-select">
-                        
+                        <div className="cancel" onClick={this.handleCancel}>
+                            <span></span>
+                            <span></span>                          
+                        </div>
                     </div>
                     <div class="box">
                         {this.state.translate.map(e => 
-                            <div className="menu-item">
+                            <div className="menu-item" data-id={e.identifier} onClick={(e) => this.handleTranslate(e)}>
                                 <sup>{e.language}</sup>{e.name}
                             </div>
 
                         )}
                         </div>
+                </div>
+                <div className="fade" style={{display: 'none'}} onClick={(e) => this.handleFade(e)}>
+
                 </div>
 
                 <audio
