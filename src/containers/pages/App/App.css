@@ -64,6 +64,16 @@ header .globe {
   align-items: center;
 }
 
+.image {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.image img {
+  width: 256px;
+}
+
 .container {
   margin-top: 75px;
 }
@@ -99,9 +109,9 @@ header .globe {
 .container-box-select {
   position: fixed;
   z-index: 3;
-  bottom: -256px;
+  bottom: -360px;
   width: 100%;
-  height: 256px;
+  height: 360px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   background-color: #FDEEC3;
@@ -112,7 +122,7 @@ header .globe {
   bottom: 0px;
 }
 .container-box-select .top-box-select {
-  height: 40px;
+  height: 35.2px;
   background-color: #EBDAAF;
   display: flex;
   justify-content: flex-end;
@@ -135,19 +145,32 @@ header .globe {
 .container-box-select .top-box-select .cancel span:last-child {
   transform: rotate(135deg);
 }
+.container-box-select .row-head {
+  background-color: #EBDAAF;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 20px;
+  font-weight: 600;
+}
+.container-box-select .row-head .column {
+  text-align: center;
+  vertical-align: middle;
+}
 .container-box-select .box {
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   overflow-y: scroll;
-  padding-bottom: 40px;
+  padding-bottom: 64px;
 }
 .container-box-select .box .menu-item {
   text-align: center;
   font-size: 20px;
   cursor: pointer;
+  transition: all 200ms;
 }
 .container-box-select .box .menu-item:hover {
   scale: 1.2;
-  background-color: #EBDAAF;
 }
 .container-box-select .box .menu-item::-moz-selection {
   background-color: transparent;

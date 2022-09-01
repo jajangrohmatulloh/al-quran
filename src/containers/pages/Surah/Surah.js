@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ListSurah from '../../../components/atoms/ListSurah/ListSurah';
 import Loader from '../../../components/atoms/Loader/Loader';
-
+import alquran from '../../../assets/al-quran.png';
 class Surah extends Component {
     state = {
         lists: [],
@@ -23,8 +23,22 @@ class Surah extends Component {
     render() {
         return (
             <>
-            <header>Surah</header>
+            <header 
+            style={
+                {
+                    display: 'flex',
+                    justifyContent: 'center'
+                }
+                }>
+                <div>
+                Surah
+                </div>               
+            </header>
+            
             <div className="container">
+            <div class="image">
+                <img src={alquran} alt=""/>
+            </div>
                 {this.state.load && <Loader />}
                 {
                 this.state.lists.map(list => 

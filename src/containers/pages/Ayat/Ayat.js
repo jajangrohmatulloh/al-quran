@@ -102,6 +102,9 @@ class Ayat extends Component {
                         if (x > y) {return 1;}
                         return 0;
                     })
+                    // console.log(this.state.translate.unshift({
+                    //     language: "None"
+                    // }))
                     }
                 // }
                 )
@@ -257,13 +260,24 @@ class Ayat extends Component {
                             <span></span>                          
                         </div>
                     </div>
+                    <div className="row-head">
+                        <div className="column">Language</div>
+                        <div className="column">Version</div>
+                    </div>
                     <div class="box">
                         {this.state.translate.map(e => 
+                        <>
                             <div className="menu-item" data-id={e.identifier} onClick={(e) => this.handleTranslate(e)}>
-                                <sup>{e.language}</sup>{e.name}
+                                {e.language}
                             </div>
+                            <div className="menu-item" data-id={e.identifier} onClick={(e) => this.handleTranslate(e)}>
+                                {e.name}
+                            </div>
+                            </>
+                            
 
                         )}
+                        
                         </div>
                 </div>
                 <div className="fade" style={{display: 'none'}} onClick={(e) => this.handleFade(e)}>

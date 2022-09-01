@@ -61,8 +61,8 @@ const ListAyat = (props) => {
             </span>
             <div className="transliteration">
                 
-                {props.transliteration.text} <br></br><br></br>
-                {props.translation && props.translation.text}
+                {props.transliteration.text}
+                {props.translation && <><br></br><br></br>{props.translation.text}</>}
                 </div>    
         </div>
         </>
