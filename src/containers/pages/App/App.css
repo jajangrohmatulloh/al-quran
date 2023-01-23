@@ -227,6 +227,7 @@ header .globe {
 .rows-ayat .ayat {
   padding: 16px;
   text-align: right;
+  line-height: 80px;
 }
 .rows-ayat .transliteration {
   grid-area: transliteration;
