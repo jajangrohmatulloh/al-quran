@@ -160,14 +160,19 @@ header .globe {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: "clear clear";
   overflow-y: scroll;
   padding-bottom: 64px;
+}
+.container-box-select .box .clear {
+  grid-area: clear;
 }
 .container-box-select .box .menu-item {
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   transition: all 200ms;
+  margin-block: 2px;
 }
 .container-box-select .box .menu-item:hover {
   scale: 1.2;
@@ -231,6 +236,7 @@ header .globe {
 .rows-ayat div.numberAyat {
   background-color: #ebdaaf;
   grid-area: number;
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
