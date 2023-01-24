@@ -20,6 +20,7 @@ class Ayat extends Component {
     transliteration: [],
     translation: [],
     isFetched: false,
+    translateFilter: [],
   };
   componentDidMount() {
     fetch(
@@ -48,7 +49,6 @@ class Ayat extends Component {
         this.setState(
           {
             translate: res.data,
-            isFetched: true,
           },
           () => {
             this.state.translate.forEach((i) => {
@@ -198,9 +198,10 @@ class Ayat extends Component {
               }
               return 0;
             });
-            // console.log(this.state.translate.unshift({
-            //     language: "None"
-            // }))
+            this.setState({
+              isFetched: true,
+              translateFilter: this.state.translate,
+            });
           }
           // }
         );
@@ -307,6 +308,14 @@ class Ayat extends Component {
     fade.style.display = 'none';
   };
 
+  handleFilter = (event) => {
+    this.setState({
+      translateFilter: this.state.translate.filter((val) =>
+        val.language.toLowerCase().includes(event.target.value.toLowerCase())
+      ),
+    });
+  };
+
   // handlePaused = () => {
   //     const classPlay = Array.from(document.getElementsByClassName('play'))
 
@@ -370,6 +379,13 @@ class Ayat extends Component {
         </div>
         <div className="container-box-select">
           <div className="top-box-select">
+            <div className="filter-wrapper">
+              <input
+                type="text"
+                placeholder="Search by language"
+                onChange={this.handleFilter}
+              />
+            </div>
             <div className="cancel" onClick={this.handleCancel}>
               <span></span>
               <span></span>
@@ -386,35 +402,43 @@ class Ayat extends Component {
             >
               none
             </div> */}
+
             <div
               className="menu-item clear"
               onClick={(e) => this.handleClearTranslate(e)}
             >
               Clear Translate
             </div>
-            {this.state.translate.map((e, i, arr) => (
-              <>
-                <div
-                  className="menu-item"
-                  //   data-id={e.identifier}
-                  //   onClick={(e) => this.handleTranslate(e)}
-                >
-                  {/* {this.state.translate[i].language !=
+            {this.state.isFetched &&
+              this.state.translateFilter.map((e) => (
+                <>
+                  <div
+                    className="menu-items group"
+                    data-id={e.identifier}
+                    onClick={(e) => this.handleTranslate(e)}
+                  >
+                    <div
+                      className="menu-item"
+                      data-id={e.identifier}
+                      //   onClick={(e) => this.handleTranslate(e)}
+                    >
+                      {/* {this.state.translate[i].language !=
                     this.state.translate[
                       i == this.state.translate.length - 1 ? i : i + 1
                     ].language && e.language} */}
-                  {e.language}
-                </div>
+                      {e.language}
+                    </div>
 
-                <div
-                  className="menu-item"
-                  data-id={e.identifier}
-                  onClick={(e) => this.handleTranslate(e)}
-                >
-                  {e.name}
-                </div>
-              </>
-            ))}
+                    <div
+                      className="menu-item"
+                      data-id={e.identifier}
+                      // onClick={(e) => this.handleTranslate(e)}
+                    >
+                      {e.name}
+                    </div>
+                  </div>
+                </>
+              ))}
           </div>
         </div>
         <div
