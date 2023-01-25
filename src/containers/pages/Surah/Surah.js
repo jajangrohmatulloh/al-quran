@@ -37,10 +37,15 @@ class Surah extends Component {
         </header>
 
         <div className="container">
+          {this.state.load && (
+            <div className="loader-wrapper">
+              <Loader />
+            </div>
+          )}
           <div className="image">
             <img src={alquran} alt="" />
           </div>
-          {this.state.load && <Loader />}
+
           {this.state.lists.map((list) => (
             <ListSurah data={list} goDetail={this.handleClick} />
           ))}

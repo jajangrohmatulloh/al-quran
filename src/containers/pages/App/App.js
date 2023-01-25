@@ -1,9 +1,10 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Surah from "../Surah/Surah";
-import Ayat from "../Ayat/Ayat";
+import React from 'react';
+import './App.css';
+import '../../../materialize.min.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Surah from '../Surah/Surah';
+import Ayat from '../Ayat/Ayat';
 
 function App() {
   return (

@@ -246,7 +246,7 @@ class Ayat extends Component {
         if (i.classList.contains('pause')) i.classList.remove('pause');
         if (i.dataset.number == this.state.number) {
           i.classList.add('pause');
-          window.scrollTo({ top: i.offsetTop - 210, behavior: 'smooth' });
+          window.scrollTo({ top: i.offsetTop - 120, behavior: 'smooth' });
           this.audioRef.current.play();
         }
       });
@@ -365,7 +365,11 @@ class Ayat extends Component {
           </div>
         </header>
         <div className="container" ref={this.containerSurah}>
-          {this.state.load && <Loader />}
+          {this.state.load && (
+            <div className="loader-wrapper">
+              <Loader />
+            </div>
+          )}
           {this.state.ayat.map((list, i) => (
             <ListAyat
               key={list.number}
