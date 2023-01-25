@@ -4,6 +4,9 @@ import Loader from '../../../components/atoms/Loader/Loader';
 import backButton from '../../../assets/back-button.svg';
 import globe from '../../../assets/globe.svg';
 import chevronDown from '../../../assets/chevron-down.svg';
+import BackButton from '../../../components/atoms/BackButton/BackButton';
+import Globe from '../../../components/atoms/Globe/Globe';
+import ChevronDown from '../../../components/atoms/ChevronDown/ChevronDown';
 
 class Ayat extends Component {
   constructor(props) {
@@ -343,12 +346,14 @@ class Ayat extends Component {
             className="back-button"
             onClick={() => this.props.history.push('/')}
           >
-            <img src={backButton} alt="" />
+            {/* <img src={backButton} alt="" /> */}
+            <BackButton />
           </div>
           <div className="detail-surah">
             <div className="surah">
               {this.state.lists.englishName}&nbsp;
-              <img src={chevronDown} alt="" />
+              {/* <img src={chevronDown} alt="" /> */}
+              <ChevronDown />
             </div>
             {/* <div className="ayat">
                             {this.state.lists.numberOfAyahs}&nbsp;Ayahs
@@ -361,7 +366,8 @@ class Ayat extends Component {
                         </div> */}
           </div>
           <div className="globe" onClick={this.handleGlobe}>
-            <img src={globe} alt="" />
+            {/* <img src={globe} alt="" /> */}
+            <Globe />
           </div>
         </header>
         <div className="container" ref={this.containerSurah}>
